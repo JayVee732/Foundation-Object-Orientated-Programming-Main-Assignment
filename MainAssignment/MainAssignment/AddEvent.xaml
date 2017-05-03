@@ -1,0 +1,53 @@
+﻿<Window x:Class="MainAssignment.AddEvent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainAssignment"
+        mc:Ignorable="d"
+        Title="Add Event" Height="390" Width="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width= "*"/>
+            <ColumnDefinition Width= "115"/>
+            <ColumnDefinition Width= "*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="29" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Add New Event" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+
+        <Label Content="Event Name" Grid.Row="1" />
+        <TextBox Name="tbxEventName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
+
+        <Label Content="Day" Grid.Row="2"/>
+        <DatePicker Name="dpDay" Grid.Row="2" Grid.Column="1" Margin="5" />
+
+        <Label Content="Start Time" Grid.Row="3"/>
+        <TextBox Name="tbxPrice" Grid.Row="3" Grid.Column="1" Margin="5" />
+
+        <Label Content="End Time" Grid.Row="4"/>
+        <TextBox Name="tbxYear" Grid.Row="4" Grid.Column="1" Margin="5" />
+
+        <Label Content="Colour" Grid.Row="5"/>
+        <ComboBox Name="cbxColour" Grid.Row="5" Grid.Column="1" Margin="5" />
+
+        <Label Content="Description" Grid.Row="6"/>
+        <TextBox Name="tbxDescription" Grid.Row="6" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5, 5, 20, 5" />
+
+        <StackPanel Grid.Row="17" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,15,0" IsDefault="True" />
+            <Button Name="btnCancel" Content="Cancel" Width="75" FontSize="12" Click="btnCancel_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

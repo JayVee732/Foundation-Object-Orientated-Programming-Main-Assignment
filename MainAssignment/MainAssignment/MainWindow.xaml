@@ -5,21 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainAssignment"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Loaded="Window_Loaded">
+        Title="Calendar" Height="350" Width="775.636" Loaded="Window_Loaded">
+    <Window.Resources>
+        <DataTemplate x:Key="listboxTemplate">
+            <Grid MinWidth="625">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="{Binding Colour}">
+                        <TextBlock Text="Event Name: " FontWeight="Bold" Margin="5"/>
+                        <TextBlock Text="{Binding EventName}" Margin="5"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Background="{Binding Colour}">
+                        <TextBlock Text="Event Time: " FontWeight="Bold" Margin="5"/>
+                        <TextBlock Text="{Binding StartTime}" Margin="5"/>
+
+                        <TextBlock Text="-" FontWeight="Bold" Margin="5"/>
+                        <TextBlock Text="{Binding EndTime}" Margin="5"/>
+                    </StackPanel>
+                    
+                    <StackPanel Orientation="Horizontal" Background="{Binding Colour}">
+                        <TextBlock Text="Event Description: " FontWeight="Bold" Margin="5"/>
+                        <TextBlock Text="{Binding EventDescription}" Margin="5"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Calendar Name="calDisplay" SelectedDatesChanged="calDisplay_SelectedDatesChanged"/>
 
-        <TextBox Width="150" Height="30" Margin="10,10,10,10" Name="SelectedDateTextBox" Grid.Column="0" Grid.Row="1" />
-        <TextBlock Name="tblkResult" Grid.Column="1" Grid.RowSpan="2"/>
+        <Calendar Name="calDisplay" SelectedDatesChanged="calDisplay_SelectedDatesChanged" Grid.RowSpan="2"/>
+        
+        <ListBox Name="lbxEvents" Grid.Column="2" Grid.RowSpan="2" ItemTemplate="{StaticResource listboxTemplate}" />
 
+        <Button Name="btnAddEvent" Grid.Column="1" Grid.Row="1" Margin="0,124,114,0" Content="Add" Click="btnAddEvent_Click" />
+        <Button Name="btnEditEvent" Grid.Column="1" Grid.Row="1" Margin="58,89,56,35" Content="Edit" Click="btnEditEvent_Click" />
+        <Button Name="btnDeleteEvent" Grid.Column="1" Grid.Row="1" Margin="109,124,5,0" Content="Delete" Click="btnDeleteEvent_Click" />
     </Grid>
 </Window>
