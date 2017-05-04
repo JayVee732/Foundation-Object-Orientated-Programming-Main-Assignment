@@ -65,12 +65,18 @@ namespace MainAssignment
 
             foreach (Event ev in query)
             {
-                //ev.EventName = tbxEventName.Text;
-                //ev.Day = dpDay.SelectedDate.Value;
-                //ev.StartTime = tbxStartTime.Text;
-                //ev.EndTime = tbxEndTime.Text;
-                //ev.Colour = cbxColour.SelectedValue.ToString();
-                //ev.EventDescription = tbxDescription.Text;
+                string startTime = tbxStartTime.Text;
+                TimeSpan st = TimeSpan.Parse(startTime);
+
+                string endTime = tbxEndTime.Text;
+                TimeSpan et = TimeSpan.Parse(endTime);
+
+                ev.EventName = tbxEventName.Text;
+                ev.Day = dpDay.SelectedDate.Value;
+                ev.StartTime = TimeSpan.Parse(st.ToString(@"hh\:mm"));
+                ev.EndTime = TimeSpan.Parse(et.ToString(@"hh\:mm"));
+                ev.Colour = cbxColour.SelectedValue.ToString();
+                ev.EventDescription = tbxDescription.Text;
             }
 
             try

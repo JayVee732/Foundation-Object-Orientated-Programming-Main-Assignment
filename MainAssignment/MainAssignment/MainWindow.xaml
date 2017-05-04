@@ -61,5 +61,6 @@
         <Button Name="btnAddEvent" Grid.Column="1" Grid.Row="1" Content="Add" Click="btnAddEvent_Click" Margin="0,124,223,0" />
         <Button Name="btnEditEvent" Grid.Column="1" Grid.Row="1" Margin="109,124,103,0" Content="Edit" Click="btnEditEvent_Click" />
         <Button Name="btnDeleteEvent" Grid.Column="1" Grid.Row="1" Margin="229,124,5,0" Content="Delete" Click="btnDeleteEvent_Click" />
+        <Button Name="btnRefresh" Grid.Column="0" Grid.Row="1" Click="btnRefresh_Click" />
     </Grid>
 </Window>

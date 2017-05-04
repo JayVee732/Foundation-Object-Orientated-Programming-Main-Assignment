@@ -38,18 +38,32 @@ namespace MainAssignment
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
+            string startTime = tbxStartTime.Text;
+            TimeSpan st = TimeSpan.Parse(startTime);
+
+            string endTime = tbxEndTime.Text;
+            TimeSpan et = TimeSpan.Parse(endTime);
+
             Event newEvent = new Event()
             {
-                //EventName = tbxEventName.Text,
-                //Day = dpDay.SelectedDate.Value,
-                //StartTime = tbxStartTime.Text,
-                //EndTime = tbxEndTime.Text,
-                //Colour = cbxColour.SelectedValue.ToString(),
-                //EventDescription = tbxDescription.Text
+                EventName = tbxEventName.Text,
+                Day = dpDay.SelectedDate.Value,
+                StartTime = TimeSpan.Parse(st.ToString(@"hh\:mm")),
+                EndTime = TimeSpan.Parse(et.ToString(@"hh\:mm")),
+                Colour = cbxColour.SelectedValue.ToString(),
+                EventDescription = tbxDescription.Text
             };
 
-            db.Events.Add(newEvent);
-            db.SaveChanges();
+            try
+            {
+                db.Events.Add(newEvent);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
             this.Close();
         }
     }

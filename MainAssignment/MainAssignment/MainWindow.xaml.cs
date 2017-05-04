@@ -1,4 +1,16 @@
-﻿using System;
+﻿/*=====================================================
+ * Program Name: Calendar Application
+ * Author: Jamie Higgins - S00162685
+ * Version: 0.2
+ * -----------------------------------------
+ * Program Purpose: This application allows the user to
+ * view their calendar. Events can be viewed on a day-
+ * by-day basis and can be edited. Events can also
+ * be added.
+ * 
+ * Functionality: AHHHH NOTHING WORKS
+ ====================================================*/
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -90,12 +102,21 @@ namespace MainAssignment
                     editEv.Show();
                 }
             }
-
             catch (Exception fe)
             {
                 MessageBox.Show(fe.Message);
                 throw;
             }
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+
+            var query = from ev in db.Events
+                        where ev.Day == calDisplay.SelectedDate.Value
+                        select ev;
+
+            lbxEvents.ItemsSource = query.ToList();
         }
     }
 }
