@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainAssignment"
         mc:Ignorable="d"
-        Title="Calendar" Height="350" Width="775.636" Loaded="Window_Loaded">
+        Title="Calendar" Height="350" Width="1338.794" Loaded="Window_Loaded">
     <Window.Resources>
         <DataTemplate x:Key="listboxTemplate">
             <Grid MinWidth="625">
@@ -54,11 +54,12 @@
         </Grid.RowDefinitions>
 
         <Calendar Name="calDisplay" SelectedDatesChanged="calDisplay_SelectedDatesChanged" Grid.RowSpan="2"/>
-        
+        <Label Content="Calendar Application" Grid.Column="1" HorizontalAlignment="Center" FontSize="24"/>
+
         <ListBox Name="lbxEvents" Grid.Column="2" Grid.RowSpan="2" ItemTemplate="{StaticResource listboxTemplate}" />
 
-        <Button Name="btnAddEvent" Grid.Column="1" Grid.Row="1" Margin="0,124,114,0" Content="Add" Click="btnAddEvent_Click" />
-        <Button Name="btnEditEvent" Grid.Column="1" Grid.Row="1" Margin="58,89,56,35" Content="Edit" Click="btnEditEvent_Click" />
-        <Button Name="btnDeleteEvent" Grid.Column="1" Grid.Row="1" Margin="109,124,5,0" Content="Delete" Click="btnDeleteEvent_Click" />
+        <Button Name="btnAddEvent" Grid.Column="1" Grid.Row="1" Content="Add" Click="btnAddEvent_Click" Margin="0,124,223,0" />
+        <Button Name="btnEditEvent" Grid.Column="1" Grid.Row="1" Margin="109,124,103,0" Content="Edit" Click="btnEditEvent_Click" />
+        <Button Name="btnDeleteEvent" Grid.Column="1" Grid.Row="1" Margin="229,124,5,0" Content="Delete" Click="btnDeleteEvent_Click" />
     </Grid>
 </Window>

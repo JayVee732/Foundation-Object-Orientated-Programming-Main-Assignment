@@ -171,10 +171,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CalendarData2017.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CalendarData2017_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>CalendarData2017.mdf</DependentUpon>
     </Content>
     <Content Include="Model1.Context.tt">

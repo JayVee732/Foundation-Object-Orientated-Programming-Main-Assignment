@@ -34,10 +34,10 @@
         <DatePicker Name="dpDay" Grid.Row="2" Grid.Column="1" Margin="5" />
 
         <Label Content="Start Time" Grid.Row="3"/>
-        <TextBox Name="tbxPrice" Grid.Row="3" Grid.Column="1" Margin="5" />
+        <TextBox Name="tbxStartTime" Grid.Row="3" Grid.Column="1" Margin="5" />
 
         <Label Content="End Time" Grid.Row="4"/>
-        <TextBox Name="tbxYear" Grid.Row="4" Grid.Column="1" Margin="5" />
+        <TextBox Name="tbxEndTime" Grid.Row="4" Grid.Column="1" Margin="5" />
 
         <Label Content="Colour" Grid.Row="5"/>
         <ComboBox Name="cbxColour" Grid.Row="5" Grid.Column="1" Margin="5" />
@@ -46,7 +46,7 @@
         <TextBox Name="tbxDescription" Grid.Row="6" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5, 5, 20, 5" />
 
         <StackPanel Grid.Row="17" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,15,0" IsDefault="True" />
+            <Button Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,15,0" IsDefault="True" Click="btnAdd_Click" />
             <Button Name="btnCancel" Content="Cancel" Width="75" FontSize="12" Click="btnCancel_Click" />
         </StackPanel>
     </Grid>

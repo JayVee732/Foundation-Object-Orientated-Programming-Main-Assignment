@@ -46,7 +46,7 @@ namespace MainAssignment
             if (calDisplay.SelectedDate.HasValue)
             {
                 DateTime date = calDisplay.SelectedDate.Value;
-                this.Title = date.ToShortDateString();
+                this.Title = "Calendar - " + date.ToShortDateString();
             }
         }
 
@@ -83,7 +83,6 @@ namespace MainAssignment
             {
                 if (selectedEvent != null)
                 {
-                    //Opens the Edit Vehicle window
                     Application.Current.Properties["selectedEvent"] = selectedEvent;
                     EditEvent editEv = new EditEvent();
                     editEv.Owner = this;

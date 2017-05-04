@@ -20,12 +20,15 @@ namespace MainAssignment
     public partial class EditEvent : Window
     {
         CalendarData2017Entities db = new CalendarData2017Entities();
+        public enum EventColour { Red, Green, Yellow, Blue };
         public Event selectedEvent = Application.Current.Properties["selectedEvent"] as Event;
-        public Event editedEvent = Application.Current.Properties["selectedEvent"] as Event;
+
         public EditEvent()
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            cbxColour.ItemsSource = Enum.GetNames(typeof(EventColour));
+            cbxColour.SelectedValue = selectedEvent.Colour;
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -56,28 +59,29 @@ namespace MainAssignment
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            string eventName = tbxEventName.Text;
-            DateTime day = dpDay.SelectedDate.Value;
-            string startTime = tbxStartTime.Text;
-            string endTime = tbxEndTime.Text;
-            string colour = cbxColour.SelectedValue.ToString();
-            string description = tbxDescription.Text;
+            var query = from ev in db.Events
+                        where ev.EventID == selectedEvent.EventID
+                        select ev;
 
-            editedEvent.EventName = eventName;
-            editedEvent.Day = day;
-            editedEvent.StartTime = startTime;
-            editedEvent.EndTime = endTime;
-            editedEvent.Colour = colour;
-            editedEvent.EventDescription = description;
-
-            MainWindow main = this.Owner as MainWindow;
-
-            if (editedEvent != selectedEvent)
+            foreach (Event ev in query)
             {
-                db.Events.Remove(selectedEvent);
-                db.Events.Add(editedEvent);
+                //ev.EventName = tbxEventName.Text;
+                //ev.Day = dpDay.SelectedDate.Value;
+                //ev.StartTime = tbxStartTime.Text;
+                //ev.EndTime = tbxEndTime.Text;
+                //ev.Colour = cbxColour.SelectedValue.ToString();
+                //ev.EventDescription = tbxDescription.Text;
             }
-            
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
             this.Close();
         }
     }
