@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainAssignment"
         mc:Ignorable="d"
-        Title="Calendar" Height="550" Width="350" Loaded="Window_Loaded">
+        Title="Calendar" Icon="images/logo.png" Height="650" Width="350" Loaded="Window_Loaded">
     <!-- Template for listbox -->
     <Window.Resources>
         <DataTemplate x:Key="listboxTemplate">
@@ -40,9 +40,9 @@
                 </StackPanel>
             </Grid>
         </DataTemplate>
-    </Window.Resources>
+    </Window.Resources> 
     
-    <Grid>
+    <Grid Background="Goldenrod">
         <!-- Grid layout for window -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -50,16 +50,26 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height=".5*"/>
             <RowDefinition Height="1.5*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <!-- End of layout code -->
-        <Label Content="Calendar Application" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="30" FontSize="24"/>
+        <Label Content="Calendar Application" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="30" FontSize="26" FontFamily="Cambria"/>
         <!-- Calendar for selecting a date -->
-        <Calendar Name="calDisplay" Grid.Row="1" SelectedDatesChanged="calDisplay_SelectedDatesChanged" Grid.ColumnSpan="2"/>
+        <Calendar Name="calDisplay" Grid.Row="2" SelectedDatesChanged="calDisplay_SelectedDatesChanged" Grid.ColumnSpan="2"/>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" HorizontalContentAlignment="Center" Content="Filter by:" FontSize="16" Margin="15"/>
+            <ComboBox Name="cbxFilter" Grid.Column="1" Margin="15"/>
+        </Grid>
+        
         <!-- Seperate grid for buttons, more control that a StackPanel -->
-        <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="2">
+        <Grid Margin="10" Grid.Row="3" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -73,6 +83,6 @@
             <Button Name="btnDeleteEvent" Grid.Column="2" Width="75" Height="35" Content="Delete" Click="btnDeleteEvent_Click" />
         </Grid>
         <!-- Listbox with events -->
-        <ListBox Name="lbxEvents" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemTemplate="{StaticResource listboxTemplate}" />
+        <ListBox Name="lbxEvents" Background="Green" Margin="5" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemTemplate="{StaticResource listboxTemplate}" />
     </Grid>
 </Window>

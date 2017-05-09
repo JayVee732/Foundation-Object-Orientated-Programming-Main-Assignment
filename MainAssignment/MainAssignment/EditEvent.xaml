@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MainAssignment"
         mc:Ignorable="d"
         Title="EditEvent" Height="390" Width="300" Loaded="Window_Loaded">
-    <Grid>
+    <Grid Background="Goldenrod">
         <!-- Grid layout -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width= "*"/>
@@ -27,7 +27,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <!-- User inputs -->
-        <Label Content="Edit Event" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
+        <Label Content="Edit Event" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" FontFamily="Cambria"/>
 
         <Label Content="Event Name" Grid.Row="1" />
         <TextBox Name="tbxEventName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>

@@ -1,15 +1,21 @@
 ﻿/*=====================================================
  * Program Name: Calendar Application
  * Author: Jamie Higgins - S00162685
- * Version: 0.3.0
+ * Version: 1.0
  * -----------------------------------------
  * Program Purpose: This application allows the user to
  * view their calendar. Events can be viewed on a day-
  * by-day basis and can be edited. Events can also
  * be added.
  * 
- * Functionality: Still need to add the filtering options
- *                Other than that, we're done!
+ * Functionality: 
+ * - Program doesn't auto-refresh a search query
+ * 
+ * - User needs to be sure that what they enter is correct for the 
+ *   startTime and endTime in the "Add" and "Edit" menus or it
+ *   won't work
+ *   
+ * - It isn't the prettiest application
  ====================================================*/
 using System;
 using System.Collections.Generic;
@@ -37,6 +43,7 @@ namespace MainAssignment
     {
         //Variables used within all of the program
         CalendarData2017Entities db = new CalendarData2017Entities();
+        public string[] FilterBy = { "A-Z", "Z-A" };
         public MainWindow()
         {
             InitializeComponent();
@@ -50,16 +57,32 @@ namespace MainAssignment
             calDisplay.FirstDayOfWeek = DayOfWeek.Monday;
             calDisplay.IsTodayHighlighted = true;
             calDisplay.SelectedDate = DateTime.Now;
+            //Sets the combobox to the array and selects the first option
+            cbxFilter.ItemsSource = FilterBy;
+            cbxFilter.SelectedIndex = 0;
         }
 
         private void calDisplay_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             //When a day is selected, the events are displayed in the listbox
-            var query = from ev in db.Events
-                        where ev.Day == calDisplay.SelectedDate.Value
-                        select ev;
+            if (cbxFilter.SelectedIndex == 0)
+            {
+                var query = from ev in db.Events
+                            where ev.Day == calDisplay.SelectedDate.Value
+                            select ev;
 
-            lbxEvents.ItemsSource = query.ToList();
+                lbxEvents.ItemsSource = query.ToList();
+            }
+            else
+            {
+                var query = from ev in db.Events
+                            where ev.Day == calDisplay.SelectedDate.Value
+                            orderby ev.EventName descending
+                            select ev;
+
+                lbxEvents.ItemsSource = query.ToList();
+            }
+
             //Changes the title of the program to reflect the day selected
             if (calDisplay.SelectedDate.HasValue)
             {
