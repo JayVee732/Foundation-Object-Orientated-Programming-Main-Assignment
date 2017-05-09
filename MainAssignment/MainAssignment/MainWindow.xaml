@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainAssignment"
         mc:Ignorable="d"
-        Title="Calendar" Height="350" Width="1338.794" Loaded="Window_Loaded">
+        Title="Calendar" Height="550" Width="350" Loaded="Window_Loaded">
+    <!-- Template for listbox -->
     <Window.Resources>
         <DataTemplate x:Key="listboxTemplate">
             <Grid MinWidth="625">
@@ -31,7 +32,7 @@
                         <TextBlock Text="-" FontWeight="Bold" Margin="5"/>
                         <TextBlock Text="{Binding EndTime}" Margin="5"/>
                     </StackPanel>
-                    
+
                     <StackPanel Orientation="Horizontal" Background="{Binding Colour}">
                         <TextBlock Text="Event Description: " FontWeight="Bold" Margin="5"/>
                         <TextBlock Text="{Binding EventDescription}" Margin="5"/>
@@ -41,26 +42,37 @@
         </DataTemplate>
     </Window.Resources>
     
-    
     <Grid>
+        <!-- Grid layout for window -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="1.5*"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <Calendar Name="calDisplay" SelectedDatesChanged="calDisplay_SelectedDatesChanged" Grid.RowSpan="2"/>
-        <Label Content="Calendar Application" Grid.Column="1" HorizontalAlignment="Center" FontSize="24"/>
-
-        <ListBox Name="lbxEvents" Grid.Column="2" Grid.RowSpan="2" ItemTemplate="{StaticResource listboxTemplate}" />
-
-        <Button Name="btnAddEvent" Grid.Column="1" Grid.Row="1" Content="Add" Click="btnAddEvent_Click" Margin="0,124,223,0" />
-        <Button Name="btnEditEvent" Grid.Column="1" Grid.Row="1" Margin="109,124,103,0" Content="Edit" Click="btnEditEvent_Click" />
-        <Button Name="btnDeleteEvent" Grid.Column="1" Grid.Row="1" Margin="229,124,5,0" Content="Delete" Click="btnDeleteEvent_Click" />
-        <Button Name="btnRefresh" Grid.Column="0" Grid.Row="1" Click="btnRefresh_Click" />
+        <!-- End of layout code -->
+        <Label Content="Calendar Application" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="30" FontSize="24"/>
+        <!-- Calendar for selecting a date -->
+        <Calendar Name="calDisplay" Grid.Row="1" SelectedDatesChanged="calDisplay_SelectedDatesChanged" Grid.ColumnSpan="2"/>
+        <!-- Seperate grid for buttons, more control that a StackPanel -->
+        <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Name="btnAddEvent" Grid.Column="0" Width="75" Height="35" Content="Add" Click="btnAddEvent_Click"/>
+            <Button Name="btnEditEvent" Grid.Column="1" Width="75" Height="35" Content="Edit" Click="btnEditEvent_Click" />
+            <Button Name="btnDeleteEvent" Grid.Column="2" Width="75" Height="35" Content="Delete" Click="btnDeleteEvent_Click" />
+        </Grid>
+        <!-- Listbox with events -->
+        <ListBox Name="lbxEvents" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" ItemTemplate="{StaticResource listboxTemplate}" />
     </Grid>
 </Window>

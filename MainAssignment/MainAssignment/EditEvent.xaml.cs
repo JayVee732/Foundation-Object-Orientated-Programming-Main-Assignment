@@ -15,18 +15,24 @@ using System.Windows.Shapes;
 namespace MainAssignment
 {
     /// <summary>
-    /// Interaction logic for EditEvent.xaml
+    /// Once the user has selected an event, this window will open with the selected
+    /// event within all of the textboxes and combo boxes.
+    /// Once the user has selected the Save button, the event will get updated with
+    /// the new information and saved to the database.
     /// </summary>
     public partial class EditEvent : Window
     {
+        //Variables used within the window
         CalendarData2017Entities db = new CalendarData2017Entities();
         public enum EventColour { Red, Green, Yellow, Blue };
+        //The selected event
         public Event selectedEvent = Application.Current.Properties["selectedEvent"] as Event;
 
         public EditEvent()
         {
             InitializeComponent();
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //Binds the emun to the combobox
             cbxColour.ItemsSource = Enum.GetNames(typeof(EventColour));
             cbxColour.SelectedValue = selectedEvent.Colour;
         }
@@ -40,6 +46,7 @@ namespace MainAssignment
         {
             try
             {
+                //Fills in the text boxes and combo box with the selected event
                 if (selectedEvent != null)
                 {
                     tbxEventName.Text = selectedEvent.EventName;
@@ -52,6 +59,7 @@ namespace MainAssignment
             }
             catch (Exception)
             {
+                //If the user somehow brakes it...
                 MessageBox.Show("No event selected");
                 this.Close();
             }
@@ -59,12 +67,15 @@ namespace MainAssignment
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            //Finds the event in the database with the same EventID
             var query = from ev in db.Events
                         where ev.EventID == selectedEvent.EventID
                         select ev;
-
+            //Foreach is used so that the same EventID can be used instead
+            //of creating a whole new event with a seperate EventID
             foreach (Event ev in query)
             {
+                //Parsing the startTime and endTime so they can be saved to the database
                 string startTime = tbxStartTime.Text;
                 TimeSpan st = TimeSpan.Parse(startTime);
 
@@ -78,7 +89,7 @@ namespace MainAssignment
                 ev.Colour = cbxColour.SelectedValue.ToString();
                 ev.EventDescription = tbxDescription.Text;
             }
-
+            //Saves the changes
             try
             {
                 db.SaveChanges();

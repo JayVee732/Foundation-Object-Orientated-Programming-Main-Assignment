@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="Add Event" Height="390" Width="300">
     <Grid>
+        <!-- Grid layout -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width= "*"/>
             <ColumnDefinition Width= "115"/>
@@ -26,7 +27,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Content="Add New Event" Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" />
-
+        <!-- User inputs -->
         <Label Content="Event Name" Grid.Row="1" />
         <TextBox Name="tbxEventName" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5"/>
 
@@ -44,10 +45,12 @@
 
         <Label Content="Description" Grid.Row="6"/>
         <TextBox Name="tbxDescription" Grid.Row="6" Grid.RowSpan="2" Grid.Column="1" Grid.ColumnSpan="2" Margin="5, 5, 20, 5" />
-
+        <!-- End of user inputs -->
+        <!-- Start of bottom bar buttons -->
         <StackPanel Grid.Row="17" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center" >
             <Button Name="btnAdd" Content="Add" Width="75" FontSize="12" Margin="0,0,15,0" IsDefault="True" Click="btnAdd_Click" />
             <Button Name="btnCancel" Content="Cancel" Width="75" FontSize="12" Click="btnCancel_Click" />
         </StackPanel>
+        <!-- End of buttons -->
     </Grid>
 </Window>
